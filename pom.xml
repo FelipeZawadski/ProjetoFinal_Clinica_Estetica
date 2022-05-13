@@ -14,7 +14,7 @@
     <name>ProjetoFinal_Clinica_Estetica</name>
     <description>ProjetoFinal_Clinica_Estetica</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -40,9 +40,14 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.4.1208</version>
+            <version>42.2.14</version>
         </dependency>
     </dependencies>
 
