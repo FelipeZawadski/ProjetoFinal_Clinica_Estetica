@@ -3,9 +3,8 @@ package com.example.projetofinal_clinica_estetica.model;
 import com.example.projetofinal_clinica_estetica.model.enums.ProcedimentoTipo;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 import static javax.persistence.GenerationType.AUTO;
@@ -20,8 +19,13 @@ import static javax.persistence.GenerationType.AUTO;
 public class Procedimento {
 
     @Id
-    @GeneratedValue(strategy = AUTO)
-    private UUID id;
+    @GeneratedValue
+    private long id;
 
+    @NotNull
     private ProcedimentoTipo procedimentoTipo;
+
+    @NotNull
+    @ManyToOne
+    private MateriaisMedicos materiaisMedicos;
 }

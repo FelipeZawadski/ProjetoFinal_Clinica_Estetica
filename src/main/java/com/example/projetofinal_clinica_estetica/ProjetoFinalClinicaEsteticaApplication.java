@@ -11,6 +11,8 @@ public class ProjetoFinalClinicaEsteticaApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ProjetoFinalClinicaEsteticaApplication.class, args);
+
+
     }
 
 }
