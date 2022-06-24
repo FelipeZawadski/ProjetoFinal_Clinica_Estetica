@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Estoque {
+public class Estoque extends Model {
 
     @Id
     @GeneratedValue
