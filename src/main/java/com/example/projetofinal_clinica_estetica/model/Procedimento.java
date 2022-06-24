@@ -1,13 +1,13 @@
 package com.example.projetofinal_clinica_estetica.model;
 
-import com.example.projetofinal_clinica_estetica.model.enums.ProcedimentoTipo;
+
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.UUID;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-import static javax.persistence.GenerationType.AUTO;
 
 @Entity
 @Getter
@@ -16,16 +16,26 @@ import static javax.persistence.GenerationType.AUTO;
 @NoArgsConstructor
 @Builder
 @ToString
-public class Procedimento {
+@Table(name = "realizar_procedimento")
+public class Procedimento extends Model{
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
-    @NotNull
-    private ProcedimentoTipo procedimentoTipo;
+    @OneToMany
+    @Getter
+    private List<ProcedimentoMaterial> procedimentoMaterial;
 
-    @NotNull
     @ManyToOne
-    private MateriaisMedicos materiaisMedicos;
+    private Medico medico;
+
+    private LocalDateTime data;
+
+    public Procedimento(Medico medico){
+        this.medico = medico;
+        this.procedimentoMaterial = new ArrayList<>();
+        this.data =LocalDateTime.now();
+    }
+
 }

@@ -26,7 +26,6 @@ public class ControleEstoque extends Model{
     private UUID id;
     @OneToOne
     private MateriaisMedicos materiaisMedicos;
-    private TipoEntrada tipoEntrada;
     private LocalDateTime dataHorario;
     private Double quantidade;
 }

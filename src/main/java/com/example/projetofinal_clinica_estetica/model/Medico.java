@@ -18,7 +18,7 @@ public class Medico {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @NotNull
     private String nome;

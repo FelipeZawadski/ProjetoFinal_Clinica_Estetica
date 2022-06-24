@@ -19,7 +19,7 @@ public class MateriaisMedicos extends Model{
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @NotNull
     private String nomeProduto;

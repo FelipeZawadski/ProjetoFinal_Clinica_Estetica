@@ -20,7 +20,7 @@ public class Agendamento {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @NotNull
     private LocalDate data_consulta;
