@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 @ToString
-public class Medico {
+public class Medico extends Model{
 
     @Id
     @GeneratedValue

@@ -1,7 +1,6 @@
 package com.example.projetofinal_clinica_estetica.service;
 
 import com.example.projetofinal_clinica_estetica.model.ControleEstoque;
-import com.example.projetofinal_clinica_estetica.model.ProcedimentoMaterial;
 import com.example.projetofinal_clinica_estetica.model.dto.ItemQuantidade;
 import com.example.projetofinal_clinica_estetica.repository.ControleEstoqueRepository;
 import com.example.projetofinal_clinica_estetica.service.CRUD.EstoqueService;
@@ -13,7 +12,7 @@ import java.util.List;
 @Slf4j
 public record SaidaMateriaisService (ControleEstoqueRepository controleEstoqueRepository, EstoqueService estoqueService){
 
-    public void removerMateriaisEstoque(int id, List<ProcedimentoMaterial> materiais){
+   /* public void removerMateriaisEstoque(List<ProcedimentoMaterial> materiais){
         List<ItemQuantidade> procedimento = materiais
                 .stream()
                 .map(procedimentoMaterial -> new ItemQuantidade(procedimentoMaterial.getMateriaisMedicos(), procedimentoMaterial.getQuantidade()))
@@ -39,5 +38,5 @@ public record SaidaMateriaisService (ControleEstoqueRepository controleEstoqueRe
                         .atualizar(material))
                 .forEach(estoqueService::save);
         log.info("Estoque atualizado");
-    }
+    }*/
 }

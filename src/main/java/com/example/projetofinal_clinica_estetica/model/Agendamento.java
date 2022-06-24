@@ -16,7 +16,7 @@ import static javax.persistence.GenerationType.AUTO;
 @NoArgsConstructor
 @Builder
 @ToString
-public class Agendamento {
+public class Agendamento extends Model{
 
     @Id
     @GeneratedValue
@@ -30,5 +30,8 @@ public class Agendamento {
 
     @ManyToOne @Getter
     private Procedimento procedimento;
+
+    @ManyToOne @Getter
+    private Medico medico;
 
 }

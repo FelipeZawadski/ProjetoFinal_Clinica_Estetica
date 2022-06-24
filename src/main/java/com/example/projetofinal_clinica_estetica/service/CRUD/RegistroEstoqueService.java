@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public record RegistroEstoqueService (RegistroEstoqueRepository registroEstoqueRepository){
 
     public RegistroEstoque save(RegistroEstoque registroEstoque){
-        log.info("Salvando movimentação do estoque do item {}", registroEstoque.getMateriaisMedicos().getNomeProduto());
+        log.info("Salvando movimentação do estoque do item {}", registroEstoque.getMateriaisMedicos().getNomeProduto(),registroEstoque.getMateriaisMedicos().getQtd());
         return registroEstoqueRepository.save(registroEstoque);
     }
 }

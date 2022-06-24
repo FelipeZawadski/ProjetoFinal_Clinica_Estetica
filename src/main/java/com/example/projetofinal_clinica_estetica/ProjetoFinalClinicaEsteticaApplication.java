@@ -1,19 +1,20 @@
 package com.example.projetofinal_clinica_estetica;
 
 
-import com.example.projetofinal_clinica_estetica.model.MateriaisMedicos;
-import com.example.projetofinal_clinica_estetica.model.Paciente;
+import com.example.projetofinal_clinica_estetica.model.*;
+import com.example.projetofinal_clinica_estetica.service.AgendamentoService;
 import com.example.projetofinal_clinica_estetica.service.CRUD.MateriaisMedicosService;
-import com.example.projetofinal_clinica_estetica.service.SaidaMateriaisService;
+import com.example.projetofinal_clinica_estetica.service.MedicoService;
+import com.example.projetofinal_clinica_estetica.service.PacienteService;
+import com.example.projetofinal_clinica_estetica.service.ProcedimentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @SpringBootApplication
 public class ProjetoFinalClinicaEsteticaApplication {
@@ -21,24 +22,68 @@ public class ProjetoFinalClinicaEsteticaApplication {
     @Autowired
     private MateriaisMedicosService materiaisMedicosService;
 
-    private SaidaMateriaisService saidaMateriaisService;
+    @Autowired
+    private AgendamentoService agendamentoService;
+
+    @Autowired
+    private PacienteService pacienteService;
+
+    @Autowired
+    private MedicoService medicoService;
+
+    @Autowired
+    private ProcedimentoService procedimentoService;
 
 
     public static void main(String[] args) {
         SpringApplication.run(ProjetoFinalClinicaEsteticaApplication.class, args);
-
     }
 
     @EventListener(ApplicationReadyEvent.class)
     public void doSomethingAfterStartup() {
-        var adicionar = materiaisMedicosService.salvar(
+        var adicionarMaterial = materiaisMedicosService.salvar(
                 MateriaisMedicos.builder()
                         .nomeProduto("luva")
                         .qtd(10)
                         .build()
         );
 
+        var adicionarPaciente = pacienteService.salvar(
+                Paciente.builder()
+                        .cpf("123")
+                        .data_nascimento(LocalDate.now())
+                        .nome("Felipe")
+                        .telefone("99096486")
+                        .build()
+        );
 
+        var adicionarMedico = medicoService.salvar(
+                Medico.builder()
+                        .especializacao("Estetica")
+                        .cpf("321")
+                        .crm("0001")
+                        .nome("João")
+                        .build()
+        );
+
+        var adicionarProcedimento = procedimentoService.salvar(
+                Procedimento.builder()
+                        .data(LocalDateTime.now())
+                        .medico(adicionarMedico)
+                        .materiaisMedicos(adicionarMaterial)
+                        .build()
+        );
+
+        var adicionarAgendamento = agendamentoService.salvar(
+                Agendamento.builder()
+                        .data_consulta(LocalDate.now())
+                        .paciente(adicionarPaciente)
+                        .medico(adicionarMedico)
+                        .procedimento(adicionarProcedimento)
+                        .build()
+        );
+
+        //medicoService.delete(adicionarMedico);
     }
 
 }

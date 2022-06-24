@@ -16,25 +16,25 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @ToString
-@Table(name = "realizar_procedimento")
+@Table
 public class Procedimento extends Model{
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @OneToMany
+    @ManyToOne
     @Getter
-    private List<ProcedimentoMaterial> procedimentoMaterial;
+    private MateriaisMedicos materiaisMedicos;
 
     @ManyToOne
     private Medico medico;
 
     private LocalDateTime data;
 
-    public Procedimento(Medico medico){
+    public Procedimento(Medico medico, MateriaisMedicos materiaisMedicos){
         this.medico = medico;
-        this.procedimentoMaterial = new ArrayList<>();
+        this.materiaisMedicos = materiaisMedicos;
         this.data =LocalDateTime.now();
     }
 

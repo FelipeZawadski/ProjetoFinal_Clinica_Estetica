@@ -19,7 +19,7 @@ import static javax.persistence.GenerationType.AUTO;
 @NoArgsConstructor
 @Builder
 @ToString
-public class Paciente {
+public class Paciente extends Model{
 
     @Id
     @GeneratedValue(strategy = AUTO)
