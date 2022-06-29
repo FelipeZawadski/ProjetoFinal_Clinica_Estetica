@@ -28,4 +28,5 @@ public class ControleEstoque extends Model{
     private MateriaisMedicos materiaisMedicos;
     private LocalDateTime dataHorario;
     private Double quantidade;
+    private TipoEntrada tipoEntrada;
 }

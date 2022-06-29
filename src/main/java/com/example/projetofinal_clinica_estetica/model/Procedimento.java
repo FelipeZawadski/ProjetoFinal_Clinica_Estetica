@@ -27,6 +27,7 @@ public class Procedimento extends Model{
     @Getter
     private MateriaisMedicos materiaisMedicos;
 
+    //@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @ManyToOne
     private Medico medico;
 

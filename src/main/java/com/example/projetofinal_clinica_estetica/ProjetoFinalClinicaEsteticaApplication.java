@@ -2,11 +2,8 @@ package com.example.projetofinal_clinica_estetica;
 
 
 import com.example.projetofinal_clinica_estetica.model.*;
-import com.example.projetofinal_clinica_estetica.service.AgendamentoService;
+import com.example.projetofinal_clinica_estetica.service.*;
 import com.example.projetofinal_clinica_estetica.service.CRUD.MateriaisMedicosService;
-import com.example.projetofinal_clinica_estetica.service.MedicoService;
-import com.example.projetofinal_clinica_estetica.service.PacienteService;
-import com.example.projetofinal_clinica_estetica.service.ProcedimentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -33,6 +30,9 @@ public class ProjetoFinalClinicaEsteticaApplication {
 
     @Autowired
     private ProcedimentoService procedimentoService;
+
+    @Autowired
+    private SaidaMateriaisService saidaMateriaisService;
 
 
     public static void main(String[] args) {
@@ -82,6 +82,7 @@ public class ProjetoFinalClinicaEsteticaApplication {
                         .procedimento(adicionarProcedimento)
                         .build()
         );
+
 
         //medicoService.delete(adicionarMedico);
     }

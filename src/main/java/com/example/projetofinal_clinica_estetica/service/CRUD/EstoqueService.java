@@ -14,14 +14,16 @@ public class EstoqueService extends CrudService<Estoque, Long>{
 
     private final EstoqueRepository estoqueRepository;
 
-    public Estoque findFirstByMateriaisMedicos(MateriaisMedicos materiaisMedicos){
-        log.info("Materiais encontrados {}", materiaisMedicos.getNomeProduto());
-        return estoqueRepository.findFirstByMateriaisMedicos(materiaisMedicos);
-    }
 
     @Override
     public JpaRepository<Estoque, Long> getRepository() {
         return estoqueRepository;
     }
+
+    public Estoque findFirstByMateriaisMedicos(MateriaisMedicos materiaisMedicos){
+        log.info("Materiais encontrados {}", materiaisMedicos.getNomeProduto());
+        return estoqueRepository.findFirstByMateriaisMedicos(materiaisMedicos);
+    }
+
 
 }

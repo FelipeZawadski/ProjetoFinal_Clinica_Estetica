@@ -31,7 +31,8 @@ public class Agendamento extends Model{
     @ManyToOne @Getter
     private Procedimento procedimento;
 
-    @ManyToOne @Getter
+    //@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true) @Getter
+    @ManyToOne
     private Medico medico;
 
 }
