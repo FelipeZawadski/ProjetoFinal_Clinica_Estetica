@@ -1,6 +1,7 @@
 package com.example.projetofinal_clinica_estetica.model;
 
 
+import com.example.projetofinal_clinica_estetica.model.enums.ProcedimentoTipo;
 import lombok.*;
 
 import javax.persistence.*;
@@ -33,10 +34,6 @@ public class Procedimento extends Model{
 
     private LocalDateTime data;
 
-    public Procedimento(Medico medico, MateriaisMedicos materiaisMedicos){
-        this.medico = medico;
-        this.materiaisMedicos = materiaisMedicos;
-        this.data =LocalDateTime.now();
-    }
+    private ProcedimentoTipo procedimentoTipo;
 
 }

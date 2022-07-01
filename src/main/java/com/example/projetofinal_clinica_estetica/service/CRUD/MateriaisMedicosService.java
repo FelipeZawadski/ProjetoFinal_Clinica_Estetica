@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -26,7 +28,7 @@ public class MateriaisMedicosService extends CrudService<MateriaisMedicos, Long>
     public MateriaisMedicos salvar(MateriaisMedicos materiaisMedicos){
         log.info("Salvar material medico {}", materiaisMedicos.getNomeProduto());
         var salvarMaterial = materiaisMedicosRepository.saveAndFlush(materiaisMedicos);
-        estoqueRepository.save(Estoque.builder().materiaisMedicos(salvarMaterial).quantidade(0.0).build());
+        estoqueRepository.save(Estoque.builder().ultimaTransacao(LocalDateTime.now()).materiaisMedicos(salvarMaterial).quantidade(0.0).build());
 
         return salvarMaterial;
     }

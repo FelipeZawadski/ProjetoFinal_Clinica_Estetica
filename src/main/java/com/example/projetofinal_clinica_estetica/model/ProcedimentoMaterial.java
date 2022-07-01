@@ -18,7 +18,7 @@ public class ProcedimentoMaterial extends Model{
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
 
     @ManyToOne
     @Getter

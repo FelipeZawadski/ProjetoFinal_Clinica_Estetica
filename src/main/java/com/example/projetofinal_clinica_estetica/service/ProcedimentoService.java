@@ -26,7 +26,7 @@ public class ProcedimentoService extends CrudService<Procedimento, Long> {
 
 
     public Procedimento salvar(Procedimento procedimento){
-        log.info("Salvar procedimento {} {} {}", procedimento.getMedico(), procedimento.getData(), procedimento.getMateriaisMedicos());
+        log.info("Salvar procedimento {} {} {} {}", procedimento.getMedico(), procedimento.getData(), procedimento.getMateriaisMedicos(), procedimento.getProcedimentoTipo());
         var salvarProcedimento = procedimentoRepository.saveAndFlush(procedimento);
 
         return salvarProcedimento;
