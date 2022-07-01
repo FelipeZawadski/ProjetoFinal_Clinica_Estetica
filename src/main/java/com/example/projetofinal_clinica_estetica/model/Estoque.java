@@ -1,7 +1,7 @@
 package com.example.projetofinal_clinica_estetica.model;
 
 
-import com.example.projetofinal_clinica_estetica.model.dto.ItemQuantidade;
+import com.example.projetofinal_clinica_estetica.model.dto.MateriaisQuantidade;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,8 +28,8 @@ public class Estoque extends Model {
 
     private LocalDateTime ultimaTransacao;
 
-    public Estoque atualizar(ItemQuantidade itemQuantidade){
-        this.quantidade += itemQuantidade.getQuantidade();
+    public Estoque atualizar(MateriaisQuantidade materiaisQuantidade){
+        this.quantidade += materiaisQuantidade.getQuantidade();
         return this;
     }
 }

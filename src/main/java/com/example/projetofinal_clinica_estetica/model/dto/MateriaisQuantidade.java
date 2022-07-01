@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class ItemQuantidade {
+public class MateriaisQuantidade {
 
     private MateriaisMedicos materiaisMedicos;
 

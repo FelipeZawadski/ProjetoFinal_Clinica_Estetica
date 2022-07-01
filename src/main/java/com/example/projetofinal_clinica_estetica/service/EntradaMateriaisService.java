@@ -1,7 +1,7 @@
 package com.example.projetofinal_clinica_estetica.service;
 
 import com.example.projetofinal_clinica_estetica.model.RegistroEstoque;
-import com.example.projetofinal_clinica_estetica.model.dto.ItemQuantidade;
+import com.example.projetofinal_clinica_estetica.model.dto.MateriaisQuantidade;
 import com.example.projetofinal_clinica_estetica.service.CRUD.EstoqueService;
 import com.example.projetofinal_clinica_estetica.service.CRUD.RegistroEstoqueService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,18 +18,18 @@ import static com.example.projetofinal_clinica_estetica.model.enums.TipoEntrada.
 public record EntradaMateriaisService(RegistroEstoqueService registroEstoqueService, EstoqueService estoqueService) {
 
 
-    public List<ItemQuantidade> listaMateriais() {
+    public List<MateriaisQuantidade> listaMateriais() {
         return new ArrayList<>();
     }
 
-    public void entradaListaMateriais(List<ItemQuantidade> materiais) {
+    public void entradaListaMateriais(List<MateriaisQuantidade> materiais) {
         log.info("Iniciando entrada de materiais ...");
         registroMovimentacaoEstoque(materiais);
         atualizarEstoque(materiais);
         log.info("Lista finalizada");
     }
 
-    private void registroMovimentacaoEstoque(List<ItemQuantidade> materiais) {
+    private void registroMovimentacaoEstoque(List<MateriaisQuantidade> materiais) {
         log.info("Iniciando movimentacao do estoque ...");
         materiais.stream()
                 .map(material -> RegistroEstoque.builder()
@@ -42,7 +42,7 @@ public record EntradaMateriaisService(RegistroEstoqueService registroEstoqueServ
         log.info("Movimentacao do estoque finalizada");
     }
 
-    private void atualizarEstoque(List<ItemQuantidade> materiais){
+    private void atualizarEstoque(List<MateriaisQuantidade> materiais){
         log.info("Atualizando estoque...");
         materiais.stream()
                 .map(material -> estoqueService.findFirstByMateriaisMedicos(material.getMateriaisMedicos())

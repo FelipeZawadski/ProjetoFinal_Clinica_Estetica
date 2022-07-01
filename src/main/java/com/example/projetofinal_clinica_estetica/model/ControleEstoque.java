@@ -1,6 +1,5 @@
 package com.example.projetofinal_clinica_estetica.model;
 
-import com.example.projetofinal_clinica_estetica.model.enums.ProcedimentoTipo;
 import com.example.projetofinal_clinica_estetica.model.enums.TipoEntrada;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
