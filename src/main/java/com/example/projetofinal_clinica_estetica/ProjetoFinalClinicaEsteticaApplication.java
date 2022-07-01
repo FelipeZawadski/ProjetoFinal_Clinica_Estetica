@@ -247,6 +247,10 @@ public class ProjetoFinalClinicaEsteticaApplication {
             System.out.println("Data: " + retorno.getData() + " Procedimento: " + retorno.getProcedimento_tipo());
         }
 
+        //Todos os selects estavam retornando os dados do banco, porém alguma alteração que eu fiz
+        //resultou, que quando é feito o select ná hora de imprimir com o system ele imprime nulo
+        //por não ter commitado não consigui retornar a versão em que estáva funcionando
+
     }
 
 }
