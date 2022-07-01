@@ -6,6 +6,7 @@ import com.example.projetofinal_clinica_estetica.model.MateriaisMedicos;
 import com.example.projetofinal_clinica_estetica.repository.AgendamentoRepository;
 import com.example.projetofinal_clinica_estetica.repository.EstoqueRepository;
 import com.example.projetofinal_clinica_estetica.repository.MateriaisMedicosRepository;
+import com.example.projetofinal_clinica_estetica.repository.PacienteRepository;
 import com.example.projetofinal_clinica_estetica.service.CRUD.CrudService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,8 +1,10 @@
 package com.example.projetofinal_clinica_estetica.service.CRUD;
 
+import com.example.projetofinal_clinica_estetica.model.Agendamento;
 import com.example.projetofinal_clinica_estetica.model.Estoque;
 import com.example.projetofinal_clinica_estetica.model.MateriaisMedicos;
 import com.example.projetofinal_clinica_estetica.repository.EstoqueRepository;
+import com.example.projetofinal_clinica_estetica.repository.MateriaisMedicosRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,7 +18,7 @@ public class EstoqueService extends CrudService<Estoque, Long>{
 
 
     @Override
-    public JpaRepository<Estoque, Long> getRepository() {
+    public EstoqueRepository getRepository() {
         return estoqueRepository;
     }
 
@@ -24,6 +26,5 @@ public class EstoqueService extends CrudService<Estoque, Long>{
         log.info("Materiais encontrados {}", materiaisMedicos.getNomeProduto());
         return estoqueRepository.findFirstByMateriaisMedicos(materiaisMedicos);
     }
-
 
 }
