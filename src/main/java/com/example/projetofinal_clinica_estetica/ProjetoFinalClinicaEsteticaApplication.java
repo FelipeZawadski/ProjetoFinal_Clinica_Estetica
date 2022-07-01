@@ -2,7 +2,13 @@ package com.example.projetofinal_clinica_estetica;
 
 
 import com.example.projetofinal_clinica_estetica.model.*;
-import com.example.projetofinal_clinica_estetica.model.dto.ItemQuantidade;
+import com.example.projetofinal_clinica_estetica.model.dto.MateriaisQuantidade;
+import com.example.projetofinal_clinica_estetica.model.dto.RetornoAgendamento;
+import com.example.projetofinal_clinica_estetica.model.dto.RetornoProcedimento;
+import com.example.projetofinal_clinica_estetica.repository.AgendamentoRepository;
+import com.example.projetofinal_clinica_estetica.repository.AgendamentoProjection;
+import com.example.projetofinal_clinica_estetica.repository.ProcedimentoProjection;
+import com.example.projetofinal_clinica_estetica.repository.ProcedimentoRepository;
 import com.example.projetofinal_clinica_estetica.service.*;
 import com.example.projetofinal_clinica_estetica.service.CRUD.MateriaisMedicosService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +21,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static com.example.projetofinal_clinica_estetica.model.enums.ProcedimentoTipo.*;
 
 @SpringBootApplication
 public class ProjetoFinalClinicaEsteticaApplication {
@@ -44,6 +50,12 @@ public class ProjetoFinalClinicaEsteticaApplication {
 
     @Autowired
     private ProcedimentoMaterialService procedimentoMaterialService;
+
+    @Autowired
+    private AgendamentoRepository agendamentoRepository;
+
+    @Autowired
+    private ProcedimentoRepository procedimentoRepository;
 
 
     public static void main(String[] args) {
@@ -131,7 +143,7 @@ public class ProjetoFinalClinicaEsteticaApplication {
                 Procedimento.builder()
                         .data(LocalDateTime.now())
                         .medico(adicionarMedico)
-                        .procedimentoTipo(APLICACAO_BOTOX)
+                        .procedimentoTipo("Aplicação botox")
                         .materiaisMedicos(adicionarMaterial)
                         .build()
         );
@@ -139,7 +151,7 @@ public class ProjetoFinalClinicaEsteticaApplication {
                 Procedimento.builder()
                         .data(LocalDateTime.now())
                         .medico(adicionarMedico)
-                        .procedimentoTipo(APLICACAO_BOTOX)
+                        .procedimentoTipo("Aplicação botox")
                         .materiaisMedicos(adicionarMaterial2)
                         .build()
         );
@@ -147,7 +159,7 @@ public class ProjetoFinalClinicaEsteticaApplication {
                 Procedimento.builder()
                         .data(LocalDateTime.now())
                         .medico(adicionarMedico2)
-                        .procedimentoTipo(DRENAGEM)
+                        .procedimentoTipo("Drenagem")
                         .materiaisMedicos(adicionarMaterial3)
                         .build()
         );
@@ -155,7 +167,7 @@ public class ProjetoFinalClinicaEsteticaApplication {
                 Procedimento.builder()
                         .data(LocalDateTime.now())
                         .medico(adicionarMedico2)
-                        .procedimentoTipo(HARMONIZACAO_FACIAL)
+                        .procedimentoTipo("Harmonização facial")
                         .materiaisMedicos(adicionarMaterial2)
                         .build()
         );
@@ -201,15 +213,39 @@ public class ProjetoFinalClinicaEsteticaApplication {
                         .build()
         );
 
-        ItemQuantidade itemQuantidade = new ItemQuantidade(adicionarMaterial, 8.0);
-        List<ItemQuantidade> listaQuantidade = new ArrayList<>();
-        listaQuantidade.add(itemQuantidade);
+        //Entrada de Materiais
+
+        MateriaisQuantidade materiaisQuantidade = new MateriaisQuantidade(adicionarMaterial, 8.0);
+        List<MateriaisQuantidade> listaQuantidade = new ArrayList<>();
+        listaQuantidade.add(materiaisQuantidade);
         entradaMateriaisService.entradaListaMateriais(listaQuantidade);
+
+
+        //Saida de Materiais
 
         ProcedimentoMaterial procedimentoMaterial = new ProcedimentoMaterial(1,adicionarProcedimento,adicionarMaterial2,2.0);
         List<ProcedimentoMaterial> listaProcedimento = new ArrayList<>();
         listaProcedimento.add(procedimentoMaterial);
         saidaMateriaisService.removerMateriaisEstoque(listaProcedimento);
+
+
+        //Listar os agendamentos de determinado dia.
+
+        List<AgendamentoProjection> lista1 = agendamentoRepository.findFirstData(LocalDate.of(2022, 06, 30));
+        List<RetornoAgendamento> result1 = lista1.stream().map(x -> new RetornoAgendamento(x)).collect(Collectors.toList());
+
+        for(RetornoAgendamento retorno : result1){
+            System.out.println("Data: " + retorno.getData_consulta() + " Paciente: " + retorno.getNomePaciente() + " Medico: " + retorno.getNomeMedico());
+        }
+
+        //Quais os procedimento estetico realizado durante o mês
+
+        List<ProcedimentoProjection> lista2 = procedimentoRepository.listaProcedimento(LocalDate.of(2022,7,01), LocalDate.of(2022, 8, 01));
+        List<RetornoProcedimento> result2 = lista2.stream().map(x -> new RetornoProcedimento(x)).collect(Collectors.toList());
+
+        for(RetornoProcedimento retorno : result2){
+            System.out.println("Data: " + retorno.getData() + " Procedimento: " + retorno.getProcedimento_tipo());
+        }
 
     }
 
