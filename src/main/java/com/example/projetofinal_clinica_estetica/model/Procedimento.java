@@ -1,13 +1,10 @@
 package com.example.projetofinal_clinica_estetica.model;
 
 
-import com.example.projetofinal_clinica_estetica.model.enums.ProcedimentoTipo;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Entity
@@ -34,6 +31,6 @@ public class Procedimento extends Model{
 
     private LocalDateTime data;
 
-    private ProcedimentoTipo procedimentoTipo;
+    private String procedimentoTipo;
 
 }
